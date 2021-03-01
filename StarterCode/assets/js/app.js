@@ -3,7 +3,7 @@
 // automatically resizes the chart
 function makeResponsive() {
 
-    // @TODO: YOUR CODE HERE!
+ 
 var svgWidth = 800;
 var svgHeight = 600;
 
@@ -17,8 +17,7 @@ var margin = {
 var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
-// Create an SVG wrapper, append an SVG group that will hold our chart,
-// and shift the latter by left and top margins.
+
 var svg = d3
   .select("#scatter")
   .append("svg")
@@ -63,7 +62,7 @@ d3.csv(csvFile)
     var xAxis = d3.axisBottom(xLinearScale);
     var yAxis = d3.axisLeft(yLinearScale);
 
-    // Appending Axes to the chart
+    // Append Axes to the chart
     chartGroup.append("g")
       .attr("transform", `translate(0, ${height})`)
       .call(xAxis);
@@ -71,7 +70,7 @@ d3.csv(csvFile)
     chartGroup.append("g")
       .call(yAxis);
 
-    // Creating Circles
+    // Create Circles
     var circlesGroup = chartGroup.selectAll("circle")
       .data(newsData)
       .enter()
@@ -81,7 +80,7 @@ d3.csv(csvFile)
       .attr("r", "10")
       .attr("fill", "lightblue");
 
-    // Adding State Abbreviation Text to the Circles
+    // Add States to Circles
     var textgroup = chartGroup.selectAll()
       .data(newsData)
       .enter()
@@ -94,7 +93,7 @@ d3.csv(csvFile)
       .style("font-weight", "700")
       .style('fill', 'black');
 
-    // Initialize tool tip
+    // Tool tip
     var tooltip = d3.tip()
       .attr("class", "tooltip")
       .offset([35, -75])
@@ -102,10 +101,10 @@ d3.csv(csvFile)
         return(`${d.state}<br>Poverty: ${d.poverty}%<br>Healthcare: ${d.healthcare}%`);
       });
 
-    // Creating tooltip in the chart
+    // create tooltip
     chartGroup.call(tooltip);
 
-    // Creating event listeners to display and hide the tooltip
+    // Create event listeners for circles and text group
   
 
       circlesGroup.on("mouseover", function(d) {
@@ -126,7 +125,7 @@ d3.csv(csvFile)
           d3.select(this).style("stroke", "white");
         });   
 
-    // Creating axes labels
+    // Axes labels
     chartGroup.append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 0 - margin.left + 20)
